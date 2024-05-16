@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoUs.Entities
 {
-    public class Task
+    public class EmployeeTask
     {
         #region Fields
 
@@ -22,13 +20,13 @@ namespace SoUs.Entities
 
         #region Constructors
 
-        public Task()
+        public EmployeeTask()
         {
             this.employees = new List<Employee>(); // Initialize to prevent null reference issues
             this.medicines = new List<Medicine>(); // Initialize to prevent null reference issues
         }
 
-        public Task(int taskId, string name, DateTime timeStart, DateTime timeEnd, Resident resident,
+        public EmployeeTask(int taskId, string name, DateTime timeStart, DateTime timeEnd, Resident resident,
                     List<Employee> employees, List<Medicine> medicines, bool completed)
         {
             this.taskId = taskId;
