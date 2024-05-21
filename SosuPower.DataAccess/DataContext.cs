@@ -10,6 +10,11 @@ namespace SosuPower.DataAccess
 
         }
 
+        public DataContext()
+        {
+
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -22,6 +27,7 @@ namespace SosuPower.DataAccess
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
         public DbSet<EmployeeTask> Tasks { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
     }
 }
