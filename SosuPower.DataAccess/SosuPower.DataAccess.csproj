@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="IRepository.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="IRepository.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
   </ItemGroup>
 

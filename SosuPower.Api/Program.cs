@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using SosuPower.DataAccess;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,8 +7,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DataContext>(options =>
-       options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<DataContext>(options =>
+//       options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//builder.Services.AddScoped < DataContext, Repository<Entities.Task>();
+//builder.Services.AddScoped<IRepository<Entities.Task>, Repository<SosuPower.Entities.Task>>();
 
 var app = builder.Build();
 

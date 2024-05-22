@@ -1,49 +1,49 @@
-﻿namespace SosuPower.DataAccess
-{
-    public interface IRepository<T>
-    {
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        IEnumerable<T> GetAll();
-        T GetBy(int id);
+﻿namespace SosuPower.DataAccess;
 
+public interface IRepository<T>
+{
+    void Add(T entity);
+    void Update(T entity);
+    void Delete(T entity);
+    IEnumerable<T> GetAll();
+    T GetBy(int id);
+
+}
+
+public class Repository<T> : IRepository<T> where T : class
+{
+    private readonly DataContext context;
+
+    public Repository(DataContext context)
+    {
+        this.context = context;
     }
 
-    public class Repository<T> : IRepository<T>
+    public void Add(T entity)
     {
-        private readonly DataContext dataContext;
+        context.Set<T>().Add(entity);
+        context.SaveChanges();
+    }
 
-        public Repository(DataContext dataContext)
-        {
-            this.dataContext = dataContext;
-        }
+    public void Update(T entity)
+    {
+        context.Set<T>().Update(entity);
+        context.SaveChanges();
+    }
 
-        public void Add(T entity)
-        {
-            throw new NotImplementedException();
-        }
+    public void Delete(T entity)
+    {
+        context.Set<T>().Remove(entity);
+        context.SaveChanges();
+    }
 
-        public void Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
+    public IEnumerable<T> GetAll()
+    {
+        return context.Set<T>().ToList();
+    }
 
-        public void Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public T GetBy(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-
+    public T GetBy(int id)
+    {
+        return context.Set<T>().Find(id);
     }
 }
