@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using SosuPower.DataAccess;
 
 namespace SosuPower.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TaskController : Controller
+    public class TaskController(ITaskRepository repository) : Controller
     {
-        private readonly IRepository<Entities.Task> repository;
+        private readonly ITaskRepository repository = repository;
 
-        public TaskController(IRepository<Entities.Task> repository)
+        [HttpGet]
+        public IEnumerable<Entities.Task> GetAll()
         {
-            this.repository = repository;
+            return repository.GetAll();
         }
-
 
         [HttpGet(nameof(GetBy))]
         public ActionResult<Entities.Task> GetBy(int id)
@@ -24,13 +25,31 @@ namespace SosuPower.Api.Controllers
         [HttpGet(nameof(GetTasksFor))]
         public IEnumerable<Entities.Task> GetTasksFor(DateTime date = default)
         {
-            return repository.GetAll();
+            return repository.GetTasksOn(date);
         }
 
         [HttpPost]
         public void AddNew(Entities.Task task)
         {
             repository.Add(task);
+        }
+
+        [HttpPut]
+        public void Update(Entities.Task task)
+        {
+            repository.Update(task);
+        }
+
+        [HttpDelete("DeleteById")]
+        public void Delete(int id)
+        {
+            repository.Delete(id);
+        }
+
+        [HttpDelete]
+        public void Delete(Entities.Task task)
+        {
+            repository.Delete(task); ;
         }
     }
 }
