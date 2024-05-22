@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SosuPower.DataAccess\SosuPower.DataAccess.csproj" />
+    <ProjectReference Include="..\SosuPower.Entities\SosuPower.Entities.csproj" />
   </ItemGroup>
 
 </Project>

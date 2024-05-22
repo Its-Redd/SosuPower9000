@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SoUs.Entities
+namespace SosuPower.Entities
 {
     public class CareCenter
     {

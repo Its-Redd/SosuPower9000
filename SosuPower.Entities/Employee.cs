@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SoUs.Entities
+namespace SosuPower.Entities
 {
     public class Employee
     {
         #region Fields
         private int employeeId;
-        private List<EmployeeTask> tasks;
+        private List<Task> tasks;
         private List<Role> roles;  // Renamed to 'roles' to better reflect that it's a collection
         private string name;
         private CareCenter careCenter;
@@ -17,14 +16,14 @@ namespace SoUs.Entities
         #region Constructors
         public Employee()
         {
-            this.tasks = new List<EmployeeTask>();  // Initialize to prevent null reference issues
+            this.tasks = new List<Task>();  // Initialize to prevent null reference issues
             this.roles = new List<Role>();  // Initialize to prevent null reference issues
         }
 
-        public Employee(int employeeId, List<EmployeeTask> tasks, List<Role> roles, string name, CareCenter careCenter)
+        public Employee(int employeeId, List<Task> tasks, List<Role> roles, string name, CareCenter careCenter)
         {
             this.employeeId = employeeId;
-            this.tasks = tasks ?? new List<EmployeeTask>();  // Use null-coalescing to ensure lists are never null
+            this.tasks = tasks ?? new List<Task>();  // Use null-coalescing to ensure lists are never null
             this.roles = roles ?? new List<Role>();
             this.name = name;
             this.careCenter = careCenter;
@@ -40,7 +39,7 @@ namespace SoUs.Entities
         }
 
         // Assuming Task and Role are defined elsewhere and they are proper entity classes
-        public virtual List<EmployeeTask> Tasks
+        public virtual List<Task> Tasks
         {
             get { return tasks; }
             set { tasks = value; }

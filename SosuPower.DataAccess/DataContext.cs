@@ -1,16 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SoUs.Entities;
+using SosuPower.Entities;
 
 namespace SosuPower.DataAccess
 {
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-
-        }
-
-        public DataContext()
         {
 
         }
@@ -26,7 +21,7 @@ namespace SosuPower.DataAccess
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
-        public DbSet<EmployeeTask> Tasks { get; set; }
+        public DbSet<SoUs.Entities.Task> Tasks { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
     }

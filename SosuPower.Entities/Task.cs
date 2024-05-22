@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SoUs.Entities
+namespace SosuPower.Entities
 {
-    public class EmployeeTask
+    public class Task
     {
         #region Fields
 
@@ -20,13 +20,13 @@ namespace SoUs.Entities
 
         #region Constructors
 
-        public EmployeeTask()
+        public Task()
         {
             this.employees = new List<Employee>(); // Initialize to prevent null reference issues
             this.medicines = new List<Medicine>(); // Initialize to prevent null reference issues
         }
 
-        public EmployeeTask(int taskId, string name, DateTime timeStart, DateTime timeEnd, Resident resident,
+        public Task(int taskId, string name, DateTime timeStart, DateTime timeEnd, Resident resident,
                     List<Employee> employees, List<Medicine> medicines, bool completed)
         {
             this.taskId = taskId;
