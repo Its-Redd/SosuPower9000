@@ -21,7 +21,7 @@ namespace SosuPower.DataAccess
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
-        public DbSet<SoUs.Entities.Task> Tasks { get; set; }
+        public DbSet<Entities.Task> Tasks { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
     }
