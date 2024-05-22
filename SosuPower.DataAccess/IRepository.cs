@@ -1,4 +1,5 @@
-﻿namespace SosuPower.DataAccess
+﻿using SosuPower.Entities;
+namespace SosuPower.DataAccess
 {
     public interface IRepository<T>
     {
@@ -13,5 +14,11 @@
     public interface ITaskRepository : IRepository<Entities.Task>
     {
         IEnumerable<Entities.Task> GetTasksOn(DateTime date);
+        IEnumerable<Entities.Task> GetTasksFor(Employee employee);
+    }
+
+    public interface IEmployeeRepository : IRepository<Employee>
+    {
+
     }
 }
