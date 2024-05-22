@@ -9,31 +9,28 @@ namespace SosuPower.Api.Controllers
     {
         private readonly IRepository<Entities.Task> repository;
 
+        public TaskController(IRepository<Entities.Task> repository)
+        {
+            this.repository = repository;
+        }
+
 
         [HttpGet(nameof(GetBy))]
         public ActionResult<Entities.Task> GetBy(int id)
         {
-            //Entities.Task task = context.Tasks
-            //    .Include(t => t.Resident)
-            //    .FirstOrDefault(t => t.TaskId == id);
-            return default;
+            return repository.GetBy(id);
         }
 
         [HttpGet(nameof(GetTasksFor))]
         public IEnumerable<Entities.Task> GetTasksFor(DateTime date = default)
         {
-            //List<Entities.Task> tasks = context.Tasks
-            //    .Where(t => t.TimeStart.Date == date.Date)
-            //    .ToList();
-            return default;
+            return repository.GetAll();
         }
 
         [HttpPost]
         public void AddNew(Entities.Task task)
         {
-            //context.Entry(task.Resident).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            //context.Tasks.Add(task);
-            //context.SaveChanges();
+            repository.Add(task);
         }
     }
 }
