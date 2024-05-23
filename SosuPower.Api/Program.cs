@@ -18,6 +18,7 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IRepository<Resident>, Repository<Resident>>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IRepository<Address>, Repository<Address>>();
+builder.Services.AddScoped<IRepository<CareCenter>, Repository<CareCenter>>();
 
 
 
