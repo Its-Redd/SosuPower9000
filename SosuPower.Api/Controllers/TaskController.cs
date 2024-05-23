@@ -10,7 +10,7 @@ namespace SosuPower.Api.Controllers
     {
         private readonly ITaskRepository repository = repository;
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IEnumerable<Entities.Task> GetAll()
         {
             return repository.GetAll();
@@ -34,7 +34,7 @@ namespace SosuPower.Api.Controllers
             return repository.GetTasksFor(employee);
         }
         [HttpPost]
-        public void AddNew(Entities.Task task)
+        public void AddNew([FromQuery] Entities.Task task)
         {
             repository.Add(task);
         }

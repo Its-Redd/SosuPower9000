@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SosuPower.DataAccess;
+using SosuPower.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,11 @@ builder.Services.AddDbContext<DataContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<IRepository<Resident>, Repository<Resident>>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
