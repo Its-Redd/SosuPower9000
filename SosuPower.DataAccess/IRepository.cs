@@ -19,6 +19,9 @@ namespace SosuPower.DataAccess
 
     public interface IEmployeeRepository : IRepository<Employee>
     {
-
+        IEnumerable<Entities.Task> GetEmployeesAt(CareCenter careCenter);
+        IEnumerable<Entities.Task> GetEmployeesWith(Role role);
     }
+
+
 }
