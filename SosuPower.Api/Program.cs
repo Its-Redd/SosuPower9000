@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SosuPower.DataAccess;
 using SosuPower.Entities;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,9 @@ builder.Services.AddScoped<IRepository<Address>, Repository<Address>>();
 builder.Services.AddScoped<IRepository<CareCenter>, Repository<CareCenter>>();
 builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
 
-
+builder.Services.AddControllers()
+    // Handle cyclic dependencies in JSON:
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 var app = builder.Build();
 
