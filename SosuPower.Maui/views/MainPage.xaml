@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:SosuPower.Maui.Converters"
              xmlns:model="clr-namespace:SosuPower.Entities;assembly=SosuPower.Entities"
+             xmlns:viewModel="clr-namespace:SosuPower.Maui.viewmodels"
+             x:DataType="viewModel:MainPageViewModel"
              x:Class="SosuPower.Maui.Views.MainPage">
 
     <ContentPage.Resources>
@@ -30,6 +32,7 @@
                Grid.ColumnSpan="2"
                HorizontalTextAlignment="Center"></Label>
         <CollectionView Grid.Row ="0"
+                        VerticalScrollBarVisibility="Always"
                         Grid.RowSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Task">

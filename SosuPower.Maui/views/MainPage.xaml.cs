@@ -1,12 +1,18 @@
-﻿namespace SosuPower.Maui.Views
+﻿using SosuPower.Maui.viewmodels;
+
+namespace SosuPower.Maui.Views
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
-        public MainPage()
+        public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
+            BindingContext = viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
 
 
