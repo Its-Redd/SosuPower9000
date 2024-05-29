@@ -28,7 +28,17 @@
                     <VerticalStackLayout Padding="10">
                         <Frame >
                             <Grid RowDefinitions="50, 200, 50"
-                                  ColumnDefinitions="50, *, 50"></Grid>
+                                  ColumnDefinitions="50, *, 50">
+                                <Label Text="Card Number"
+                                    Grid.Row="0"
+                                       Grid.Column="0"></Label>
+                                <Label Text="Time Stamps"
+                                    Grid.Row="0"
+                                       Grid.Column="1"></Label>
+                                <Label Text="Room Numba"
+                                       Grid.Row="0"
+                                       Grid.Column="2"></Label>
+                            </Grid>
                         </Frame>
                     </VerticalStackLayout>
                 </DataTemplate>
