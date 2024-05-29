@@ -68,8 +68,4 @@
 	  <ProjectReference Include="..\SosuPower.Entities\SosuPower.Entities.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="views\" />
-	</ItemGroup>
-
 </Project>
