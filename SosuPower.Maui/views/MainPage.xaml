@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:SosuPower.Maui.Converters"
+             xmlns:model="clr-namespace:SosuPower.Entities;assembly=SosuPower.Entities"
              x:Class="SosuPower.Maui.Views.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TimeRangeConverter x:Key="TimeRangeConverter"></converters:TimeRangeConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid  ColumnDefinitions="*,*"
            RowDefinitions="50, Auto">
@@ -24,7 +32,7 @@
         <CollectionView Grid.Row ="0"
                         Grid.RowSpan="2">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="">
+                <DataTemplate x:DataType="model:Task">
                     <VerticalStackLayout Padding="10">
                         <Frame >
                             <Grid RowDefinitions="50, 200, 50"
@@ -32,9 +40,15 @@
                                 <Label Text="Card Number"
                                     Grid.Row="0"
                                        Grid.Column="0"></Label>
-                                <Label Text="Time Stamps"
-                                    Grid.Row="0"
-                                       Grid.Column="1"></Label>
+                                <Label Grid.Row="0"
+                                       Grid.Column="1">
+                                    <Label.Text>
+                                        <MultiBinding Converter="{StaticResource TimeRangeConverter}">
+                                            <Binding Path="StartTime" />
+                                            <Binding Path="EndTime" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
                                 <Label Text="Room Numba"
                                        Grid.Row="0"
                                        Grid.Column="2"></Label>
