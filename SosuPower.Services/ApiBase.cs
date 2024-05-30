@@ -1,21 +1,54 @@
 ﻿using SosuPower.Entities;
 using System.Net.Http.Json;
+using Task = SosuPower.Entities.Task;
 
 namespace SosuPower.Services
 {
     // Probably my favorite class in the project cause its so cool
     public abstract class ApiBase
     {
-        protected Uri BaseUri;
+        protected Uri baseUri;
 
         protected ApiBase(Uri baseUri)
         {
-            this.BaseUri = baseUri;
+            this.baseUri = baseUri;
         }
 
         protected ApiBase(string uri) : this(new Uri(uri))
         {
 
+        }
+
+        protected virtual async Task<HttpResponseMessage> GetHttpAsync(string uri)
+        {
+            string url = $"{baseUri}{uri}";
+            using HttpClient client = new();
+            client.BaseAddress = baseUri;
+            return await client.GetAsync(uri);
+        }
+
+        protected virtual async Task<HttpResponseMessage> PostHttpAsync(string uri, object content)
+        {
+            string url = $"{baseUri}{uri}";
+            using HttpClient client = new();
+            client.BaseAddress = baseUri;
+            return await client.PostAsJsonAsync(uri, content);
+        }
+
+        protected virtual async Task<HttpResponseMessage> PutHttpAsync(string uri, object content)
+        {
+            string url = $"{baseUri}{uri}";
+            using HttpClient client = new();
+            client.BaseAddress = baseUri;
+            return await client.PutAsJsonAsync(uri, content);
+        }
+
+        protected virtual async Task<HttpResponseMessage> DeleteHttpAsync(string uri)
+        {
+            string url = $"{baseUri}{uri}";
+            using HttpClient client = new();
+            client.BaseAddress = baseUri;
+            return await client.DeleteAsync(uri);
         }
     }
 
@@ -30,37 +63,23 @@ namespace SosuPower.Services
             // Initialize the service
         }
 
-        public List<Entities.Task> GetTasksForEmployeeOnDate(DateTime date, Employee employee)
+        public async Task<List<Entities.Task>> GetTasksForAsync(DateTime date, Employee employee)
         {
-            // UriBuilder is a cool class that helps you build URIs, and its sick!
-            UriBuilder uriBuilder = new UriBuilder(BaseUri);
-            uriBuilder.Path = "Task/GetTasksOn";
-            uriBuilder.Query = $"date={date}&employee={employee}";
-
-            using HttpClient client = new HttpClient();
+            UriBuilder uriBuilder = new UriBuilder(baseUri);
+            uriBuilder.Path = "api/Task";
+            using HttpClient client = new();
             client.BaseAddress = uriBuilder.Uri;
 
-            var response = client.GetAsync(uriBuilder.Uri.AbsoluteUri).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var result = response.Content.ReadFromJsonAsAsyncEnumerable<Entities.Task>();
-            }
-            else
-            {
-                // Log the error
-                throw new Exception("Failed to get tasks - " + response);
-            }
+            var response = await GetHttpAsync("api/Task/");
+            var result = response.Content.ReadFromJsonAsAsyncEnumerable<Entities.Task>();
+            List<Entities.Task> tasks = await result.ToListAsync();
 
-            return default;
+            return tasks;
         }
-
-
-
-
     }
 
     public interface ISosuService
     {
-        List<Entities.Task> GetTasksForEmployeeOnDate(DateTime date, Employee employee);
+        Task<List<Task>> GetTasksForAsync(DateTime date, Employee employee);
     }
 }

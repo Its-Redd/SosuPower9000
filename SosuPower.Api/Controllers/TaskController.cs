@@ -23,12 +23,19 @@ namespace SosuPower.Api.Controllers
         //}
 
         [HttpGet(nameof(GetAssignmentsForEmployeeByDate))]
-        public IEnumerable<Entities.Task> GetAssignmentsForEmployeeByDate([FromQuery] Employee employee, DateTime date = default)
+        public IEnumerable<Entities.Task> GetAssignmentsForEmployeeByDate(Employee employee, DateTime date = default)
         {
             if (date == default)
             {
                 date = DateTime.Now;
             }
+
+            if (employee == null)
+            {
+                throw new ArgumentNullException(nameof(employee));
+            }
+
+
             return repository.GetTasksForEmployeeOnDate(employee, date);
         }
 
