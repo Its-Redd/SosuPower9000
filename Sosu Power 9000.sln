@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SosuPower.Entities", "SosuP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SosuPower.DataAccess", "SosuPower.DataAccess\SosuPower.DataAccess.csproj", "{2A4A4841-341E-4BF3-A45B-9CD43B026501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosuPower.Maui", "SosuPower.Maui\SosuPower.Maui.csproj", "{CC1C44DD-E868-4BBC-A216-95167D70C529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SosuPower.Maui", "SosuPower.Maui\SosuPower.Maui.csproj", "{CC1C44DD-E868-4BBC-A216-95167D70C529}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosuPower.Services", "SosuPower.Services\SosuPower.Services.csproj", "{86CD8958-0BFD-4B0C-BC9A-4ABCD4BAD875}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{CC1C44DD-E868-4BBC-A216-95167D70C529}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC1C44DD-E868-4BBC-A216-95167D70C529}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC1C44DD-E868-4BBC-A216-95167D70C529}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{86CD8958-0BFD-4B0C-BC9A-4ABCD4BAD875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86CD8958-0BFD-4B0C-BC9A-4ABCD4BAD875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86CD8958-0BFD-4B0C-BC9A-4ABCD4BAD875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86CD8958-0BFD-4B0C-BC9A-4ABCD4BAD875}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
