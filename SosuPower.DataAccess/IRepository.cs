@@ -13,7 +13,7 @@ namespace SosuPower.DataAccess
 
     public interface ITaskRepository : IRepository<Entities.Task>
     {
-        IEnumerable<Entities.Task> GetTasksforEmployeeOnDate(Employee employee, DateTime date);
+        IEnumerable<Entities.Task> GetTasksForEmployeeOnDate(Employee employee, DateTime date);
         IEnumerable<Entities.Task> GetTasksFor(Employee employee);
     }
 

@@ -1,5 +1,5 @@
-﻿using System.Net.Http.Json;
-using SosuPower.Entities;
+﻿using SosuPower.Entities;
+using System.Net.Http.Json;
 
 namespace SosuPower.Services
 {
@@ -19,7 +19,7 @@ namespace SosuPower.Services
         }
     }
 
-    public class SosuService : ApiBase, SosuService.ISosuService
+    public class SosuService : ApiBase, ISosuService
     {
         public SosuService(Uri baseUri) : base(baseUri)
         {
@@ -30,11 +30,13 @@ namespace SosuPower.Services
             // Initialize the service
         }
 
-        public List<Entities.Task> GetTasksOn(DateTime date, Employee employee)
+        public List<Entities.Task> GetTasksForEmployeeOnDate(DateTime date, Employee employee)
         {
+            // UriBuilder is a cool class that helps you build URIs, and its sick!
             UriBuilder uriBuilder = new UriBuilder(BaseUri);
             uriBuilder.Path = "Task/GetTasksOn";
             uriBuilder.Query = $"date={date}&employee={employee}";
+
             using HttpClient client = new HttpClient();
             client.BaseAddress = uriBuilder.Uri;
 
@@ -48,14 +50,17 @@ namespace SosuPower.Services
                 // Log the error
                 throw new Exception("Failed to get tasks - " + response);
             }
+
             return default;
         }
 
-        public interface ISosuService
-        {
-            List<Entities.Task> GetTasksOn(DateTime date, Employee employee);
-        }
 
 
+
+    }
+
+    public interface ISosuService
+    {
+        List<Entities.Task> GetTasksForEmployeeOnDate(DateTime date, Employee employee);
     }
 }

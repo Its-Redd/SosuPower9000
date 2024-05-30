@@ -12,6 +12,11 @@ namespace SosuPower.DataAccess
             return dataContext.Tasks.Where(a => a.TimeStart == date.Date);
         }
 
+        public IEnumerable<Task> GetTasksForEmployeeOnDate(Employee employee, DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Task> GetTasksFor(Employee employee)
         {
             throw new NotImplementedException();
