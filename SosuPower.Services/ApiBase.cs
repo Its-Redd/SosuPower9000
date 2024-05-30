@@ -1,5 +1,5 @@
-﻿using SosuPower.Entities;
-using Task = SosuPower.Entities.Task;
+﻿using System.Net.Http.Json;
+using SosuPower.Entities;
 
 namespace SosuPower.Services
 {
@@ -30,13 +30,24 @@ namespace SosuPower.Services
             // Initialize the service
         }
 
-        public List<Task> GetTasksOn(DateTime date, Employee employee)
+        public List<Entities.Task> GetTasksOn(DateTime date, Employee employee)
         {
             UriBuilder uriBuilder = new UriBuilder(BaseUri);
             uriBuilder.Path = "Task/GetTasksOn";
             uriBuilder.Query = $"date={date}&employee={employee}";
+            using HttpClient client = new HttpClient();
+            client.BaseAddress = uriBuilder.Uri;
 
-
+            var response = client.GetAsync(uriBuilder.Uri.AbsoluteUri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadFromJsonAsAsyncEnumerable<Entities.Task>();
+            }
+            else
+            {
+                // Log the error
+                throw new Exception("Failed to get tasks - " + response);
+            }
             return default;
         }
 

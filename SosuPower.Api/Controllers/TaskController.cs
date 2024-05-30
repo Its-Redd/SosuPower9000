@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SosuPower.DataAccess;
 using SosuPower.Entities;
+using Task = SosuPower.Entities.Task;
 
 namespace SosuPower.Api.Controllers
 {
@@ -22,10 +23,10 @@ namespace SosuPower.Api.Controllers
             return repository.GetBy(id);
         }
 
-        [HttpGet(nameof(GetTasksOn))]
-        public IEnumerable<Entities.Task> GetTasksOn(DateTime date = default)
+        [HttpGet(nameof(GetAssignmentsForEmployeeByDate))]
+        public IEnumerable<Entities.Task> GetAssignmentsForEmployeeByDate(Employee employee, DateTime date = default)
         {
-            return repository.GetTasksOn(date);
+            return repository.GetTasksforEmployeeOnDate(employee, date);
         }
 
         [HttpGet(nameof(GetTasksFor))]
