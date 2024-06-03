@@ -10,7 +10,8 @@ namespace SosuPower.DataAccess
 
         public IEnumerable<Task> GetTasksForEmployeeOnDate(int employeeId, DateTime date)
         {
-            return dataContext.Tasks.Where(t => t.Employees
+            return dataContext.Tasks
+                .Where(t => t.Employees
                 .Any(e => e.EmployeeId == employeeId) && t.TimeStart.Date == date)
                 .Include(t => t.Resident)
                 .ToList();
