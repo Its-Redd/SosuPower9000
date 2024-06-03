@@ -13,64 +13,108 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!-- Define grid layout -->
-    <Grid  ColumnDefinitions="*,*"
-           RowDefinitions="50, Auto">
+    <!-- Base Grid -->
+    <Grid ColumnDefinitions="*"
+          RowDefinitions="Auto,*"
+          Padding="20"
+          BackgroundColor="{StaticResource Background}">
+        <!-- Header -->
+        <Grid ColumnDefinitions="*,*" 
+              RowDefinitions="*,*">
 
-        <Button Text="Recepter"
-                Grid.Column="0"
-                HeightRequest="40"
-                Margin="10"></Button>
+            <!-- Make this correct some time... -->
+            <Button Text="Recepter" 
+                    Grid.Column="0" 
+                    Grid.Row="0"
+                    WidthRequest="125"
+                    HorizontalOptions="Start"
+                    Command="{Binding UpdateTasksCommand}"
+                    Style="{StaticResource Pill}"/>
 
-        <Label Text="Simon Piihl"
-               Grid.Column="1"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"
-               FontSize="14"
-               Margin="10"></Label>
+            <!-- Fix name to be correct to the logged in user (log in not existing yet...)-->
+            <Label Text="Noah. A. Nielsen" 
+                   Grid.Column="1" 
+                   Grid.Row="0" 
+                   VerticalTextAlignment="Start" 
+                   HorizontalOptions="End"/>
 
-        <Label Text="DAGENS OPGAVER"
-               FontSize="28"
-               Margin="10"
-               Grid.Row="1"
-               Grid.ColumnSpan="2"
-               HorizontalTextAlignment="Center"></Label>
+            <Label Text="DAGENS OPGAVER" 
+                   Style="{StaticResource Title}"
+                   Grid.Row="2" 
+                   Grid.Column="0" 
+                   Grid.ColumnSpan="2" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" 
+                   Margin="0,10,0,0"/>
 
-        <!-- List of tasks for today -->
-        <CollectionView Grid.Row ="0"
-                        VerticalScrollBarVisibility="Always"
-                        Grid.RowSpan="2">
+        </Grid>
+
+        <!-- Main Content -->
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding TodaysTasks}">
+
             <CollectionView.ItemTemplate>
+
+                <!-- Cards -->
                 <DataTemplate x:DataType="model:Task">
-                    <VerticalStackLayout Padding="10">
 
-                        <Frame >
-                            <Grid RowDefinitions="50, 200, 50"
-                                  ColumnDefinitions="50, *, 50">
+                    <Border Style="{StaticResource Card}">
+                        <Grid 
+                        RowDefinitions="2*,1,4*"
+                        HeightRequest="100">
 
-                                <Label Text="Card Number"
-                                       Grid.Row="0"
-                                       Grid.Column="0"></Label>
+                            <!-- Card Header -->
+                            <Grid Grid.Row="0"
+                            ColumnDefinitions="40,*,40"
+                              RowDefinitions="*, Auto"
+                            Style="{StaticResource CardHeader}">
 
-                                <Label Grid.Row="0"
-                                       Grid.Column="1">
+                                <Label Text="Nr." 
+                                   Style="{StaticResource CardText}"
+                                   Grid.Column="0"
+                                   HorizontalTextAlignment="Start"/>
+
+                                <!-- This shit should work... Update later -->
+                                <!-- Didn't work correctly. We'll try again :D -->
+                                <Label Style="{StaticResource CardText}"
+                                   HorizontalOptions="Center"
+                                   Grid.Column="1">
                                     <Label.Text>
                                         <MultiBinding Converter="{StaticResource TimeRangeConverter}">
-                                            <Binding Path="StartTime" />
-                                            <Binding Path="EndTime" />
+                                            <Binding Path="TimeStart" />
+                                            <Binding Path="TimeEnd" />
                                         </MultiBinding>
                                     </Label.Text>
                                 </Label>
 
-                                <Label Text="Room Numba"
-                                       Grid.Row="0"
-                                       Grid.Column="2"></Label>
+                                <Label Text="{Binding Resident.RoomNumber}"
+                                   Style="{StaticResource CardText}"
+                                   Grid.Column="2"
+                                       HorizontalTextAlignment="End"/>
+
                             </Grid>
-                        </Frame>
-                    </VerticalStackLayout>
+                            <!-- Header Border -->
+                            <Border
+                                    Style="{StaticResource CardHeaderBorder}"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="3"/>
+                            <!-- Card Body -->
+                            <Grid Grid.Row="2"
+                              ColumnDefinitions="4*, 1*"
+                              Style="{StaticResource CardBody}">
+
+                                <Label Text="{Binding Resident.Name}"
+                                   Style="{StaticResource CardText}"
+                                   Grid.Column="0"/>
+
+                                <CheckBox IsChecked="{Binding IsCompleted}"
+                                      Style="{StaticResource CardCheckbox}"
+                                      Grid.Column="1"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
     </Grid>
 </ContentPage>

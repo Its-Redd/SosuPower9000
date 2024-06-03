@@ -16,6 +16,10 @@ namespace SosuPower.Maui.Views
         }
 
 
+        private void Button_OnClicked_(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
