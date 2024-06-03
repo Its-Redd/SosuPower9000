@@ -12,8 +12,6 @@ namespace SosuPower.DataAccess
         {
             return dataContext.Tasks.Where(t => t.Employees
                 .Any(e => e.EmployeeId == employeeId) && t.TimeStart.Date == date)
-                .Include(t => t.Employees)
-                .Include(t => t.Medicines)
                 .Include(t => t.Resident)
                 .ToList();
         }
