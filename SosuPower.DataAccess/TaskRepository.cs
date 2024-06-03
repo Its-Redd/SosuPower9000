@@ -1,4 +1,4 @@
-﻿using SosuPower.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 using Task = SosuPower.Entities.Task;
 
 namespace SosuPower.DataAccess
@@ -7,19 +7,15 @@ namespace SosuPower.DataAccess
         Repository<Entities.Task>(dataContext), ITaskRepository
     {
 
-        public IEnumerable<Entities.Task> GetTasksOn(DateTime date)
-        {
-            return dataContext.Tasks.Where(a => a.TimeStart == date.Date);
-        }
 
-        public IEnumerable<Task> GetTasksForEmployeeOnDate(Employee employee, DateTime date)
+        public IEnumerable<Task> GetTasksForEmployeeOnDate(int employeeId, DateTime date)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Task> GetTasksFor(Employee employee)
-        {
-            throw new NotImplementedException();
+            return dataContext.Tasks.Where(t => t.Employees
+                .Any(e => e.EmployeeId == employeeId) && t.TimeStart.Date == date)
+                .Include(t => t.Employees)
+                .Include(t => t.Medicines)
+                .Include(t => t.Resident)
+                .ToList();
         }
     }
 }

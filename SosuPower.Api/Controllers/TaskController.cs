@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SosuPower.DataAccess;
-using SosuPower.Entities;
 
 namespace SosuPower.Api.Controllers
 {
@@ -23,20 +22,20 @@ namespace SosuPower.Api.Controllers
         //}
 
         [HttpGet(nameof(GetAssignmentsForEmployeeByDate))]
-        public IEnumerable<Entities.Task> GetAssignmentsForEmployeeByDate(Employee employee, DateTime date = default)
+        public IEnumerable<Entities.Task> GetAssignmentsForEmployeeByDate(int employeeId, DateTime date = default)
         {
             if (date == default)
             {
                 date = DateTime.Now;
             }
 
-            if (employee == null)
+            if (employeeId == null)
             {
-                throw new ArgumentNullException(nameof(employee));
+                throw new ArgumentNullException(nameof(employeeId));
             }
 
 
-            return repository.GetTasksForEmployeeOnDate(employee, date);
+            return repository.GetTasksForEmployeeOnDate(employeeId, date);
         }
 
         //[HttpGet(nameof(GetTasksFor))]
