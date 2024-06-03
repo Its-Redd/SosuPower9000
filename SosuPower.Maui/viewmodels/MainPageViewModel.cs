@@ -2,6 +2,7 @@
 using SosuPower.Entities;
 using SosuPower.Services;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Task = System.Threading.Tasks.Task;
 
 namespace SosuPower.Maui.viewmodels;
@@ -46,6 +47,7 @@ public partial class MainPageViewModel : BaseViewModel
         {
             // Log error
             Console.WriteLine(ex.Message);
+            Debug.WriteLine(ex.InnerException);
         }
         finally
         {

@@ -4,7 +4,7 @@ using SosuPower.DataAccess;
 namespace SosuPower.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TaskController(ITaskRepository repository) : Controller
     {
         private readonly ITaskRepository repository = repository;

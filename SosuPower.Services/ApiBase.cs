@@ -1,4 +1,5 @@
 ﻿using SosuPower.Entities;
+using System.Diagnostics;
 using System.Net.Http.Json;
 using Task = SosuPower.Entities.Task;
 
@@ -8,10 +9,19 @@ namespace SosuPower.Services
     public abstract class ApiBase
     {
         protected Uri baseUri;
+        protected HttpClient client;
+
 
         protected ApiBase(Uri baseUri)
         {
             this.baseUri = baseUri;
+
+            HttpClientHandler handler = new HttpClientHandler();
+            {
+                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+            }
+
+            client = new HttpClient(handler);
         }
 
         protected ApiBase(string uri) : this(new Uri(uri))
@@ -22,33 +32,7 @@ namespace SosuPower.Services
         protected virtual async Task<HttpResponseMessage> GetHttpAsync(string uri)
         {
             string url = $"{baseUri}{uri}";
-            using HttpClient client = new();
-            client.BaseAddress = baseUri;
-            return await client.GetAsync(uri);
-        }
-
-        protected virtual async Task<HttpResponseMessage> PostHttpAsync(string uri, object content)
-        {
-            string url = $"{baseUri}{uri}";
-            using HttpClient client = new();
-            client.BaseAddress = baseUri;
-            return await client.PostAsJsonAsync(uri, content);
-        }
-
-        protected virtual async Task<HttpResponseMessage> PutHttpAsync(string uri, object content)
-        {
-            string url = $"{baseUri}{uri}";
-            using HttpClient client = new();
-            client.BaseAddress = baseUri;
-            return await client.PutAsJsonAsync(uri, content);
-        }
-
-        protected virtual async Task<HttpResponseMessage> DeleteHttpAsync(string uri)
-        {
-            string url = $"{baseUri}{uri}";
-            using HttpClient client = new();
-            client.BaseAddress = baseUri;
-            return await client.DeleteAsync(uri);
+            return await client.GetAsync(url);
         }
     }
 
@@ -65,14 +49,20 @@ namespace SosuPower.Services
 
         public async Task<List<Entities.Task>> GetTasksForAsync(DateTime date, Employee employee)
         {
-            UriBuilder uriBuilder = new UriBuilder(baseUri);
-            uriBuilder.Path = "api/Task";
-            using HttpClient client = new();
-            client.BaseAddress = uriBuilder.Uri;
+            List<Task> tasks;
+            try
+            {
 
-            var response = await GetHttpAsync("api/Task/");
-            var result = response.Content.ReadFromJsonAsAsyncEnumerable<Entities.Task>();
-            List<Entities.Task> tasks = await result.ToListAsync();
+                var response = await GetHttpAsync("Task/GetAssignmentsForEmployeeByDate?employeeId=4&date=2024-05-23");
+                var result = response.Content.ReadFromJsonAsAsyncEnumerable<Task>();
+                tasks = await result.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Debug.WriteLine(e.InnerException);
+                throw;
+            }
 
             return tasks;
         }

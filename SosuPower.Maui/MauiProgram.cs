@@ -7,7 +7,7 @@ namespace SosuPower.Maui
 {
     public static class MauiProgram
     {
-        private const string Url = "https://localhost:7238/api/";
+        private const string Url = "https://10.0.2.2:7238/api/";
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();

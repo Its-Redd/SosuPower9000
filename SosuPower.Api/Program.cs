@@ -22,9 +22,17 @@ builder.Services.AddScoped<IRepository<Address>, Repository<Address>>();
 builder.Services.AddScoped<IRepository<CareCenter>, Repository<CareCenter>>();
 builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
 
+
 builder.Services.AddControllers()
     // Handle cyclic dependencies in JSON:
     .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+    });
 
 var app = builder.Build();
 
