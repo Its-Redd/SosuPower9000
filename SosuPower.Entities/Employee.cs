@@ -8,7 +8,7 @@ namespace SosuPower.Entities
         #region Fields
         private int employeeId;
         private List<Task> tasks;
-        private List<Role> roles;  // Renamed to 'roles' to better reflect that it's a collection
+        private List<Role> roles;
         private string name;
         private CareCenter careCenter;
         #endregion
@@ -38,7 +38,6 @@ namespace SosuPower.Entities
             set { employeeId = value; }
         }
 
-        // Assuming Task and Role are defined elsewhere and they are proper entity classes
         public virtual List<Task> Tasks
         {
             get { return tasks; }
@@ -59,14 +58,13 @@ namespace SosuPower.Entities
             set { name = value; }
         }
 
-        [ForeignKey("CareCenterId")]  // Assuming there is a CareCenterId foreign key in Employee table
+        [ForeignKey("CareCenterId")]
         public virtual CareCenter CareCenter
         {
             get { return careCenter; }
             set { careCenter = value; }
         }
 
-        // Add a foreign key property if not already present in CareCenter class
         public int CareCenterId { get; set; }
         #endregion
     }

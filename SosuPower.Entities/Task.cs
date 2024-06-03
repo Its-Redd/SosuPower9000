@@ -79,7 +79,6 @@ namespace SosuPower.Entities
             set { resident = value; }
         }
 
-        // Optional: Define a foreign key if you're explicitly defining foreign keys
         public int ResidentId { get; set; }
 
         public virtual List<Employee> Employees
