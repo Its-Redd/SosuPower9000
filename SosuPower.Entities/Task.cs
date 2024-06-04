@@ -8,12 +8,11 @@ namespace SosuPower.Entities
         #region Fields
 
         private int taskId;
-        private string name;
         private DateTime timeStart;
         private DateTime timeEnd;
         private Resident resident;
         private List<Employee> employees;
-        private List<Medicine> medicines; // Remove nullable for better EF compatibility
+        private List<Medicine> medicines;
         private bool completed;
 
         #endregion
@@ -26,15 +25,14 @@ namespace SosuPower.Entities
             this.medicines = new List<Medicine>(); // Initialize to prevent null reference issues
         }
 
-        public Task(int taskId, string name, DateTime timeStart, DateTime timeEnd, Resident resident,
+        public Task(int taskId, DateTime timeStart, DateTime timeEnd, Resident resident,
                     List<Employee> employees, List<Medicine> medicines, bool completed)
         {
             this.taskId = taskId;
-            this.name = name;
             this.timeStart = timeStart;
             this.timeEnd = timeEnd;
             this.resident = resident;
-            this.employees = employees ?? new List<Employee>(); // Use null-coalescing to ensure lists are never null
+            this.employees = employees ?? new List<Employee>();
             this.medicines = medicines ?? new List<Medicine>();
             this.completed = completed;
         }
@@ -50,13 +48,6 @@ namespace SosuPower.Entities
             set { taskId = value; }
         }
 
-        [Required]
-        [MaxLength(255)]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
 
         [Required]
         public DateTime TimeStart
@@ -92,6 +83,7 @@ namespace SosuPower.Entities
             get { return medicines; }
             set { medicines = value; }
         }
+
 
         [Required]
         public bool Completed

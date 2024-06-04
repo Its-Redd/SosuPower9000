@@ -52,8 +52,11 @@ namespace SosuPower.Services
             List<Task> tasks;
             try
             {
+                // Hardcoded date for testing purposes
+                date = new DateTime(2022, 1, 1);
+                // Remember to out comment the hardcoded date
 
-                var response = await GetHttpAsync("Task/GetAssignmentsForEmployeeByDate?employeeId=4&date=2024-05-23");
+                var response = await GetHttpAsync($"Task/GetAssignmentsForEmployeeByDate?employeeId={employee.EmployeeId}&date={date}");
                 var result = response.Content.ReadFromJsonAsAsyncEnumerable<Task>();
                 tasks = await result.ToListAsync();
             }
@@ -70,6 +73,6 @@ namespace SosuPower.Services
 
     public interface ISosuService
     {
-        Task<List<Task>> GetTasksForAsync(DateTime date, Employee employee);
+        Task<List<Entities.Task>> GetTasksForAsync(DateTime date, Employee employee);
     }
 }

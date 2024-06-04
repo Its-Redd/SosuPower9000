@@ -30,7 +30,7 @@ public partial class MainPageViewModel : BaseViewModel
             IsBusy = true;
             DateTime date = DateTime.Now;
             Employee employee = new() { EmployeeId = 2 };
-            var tasks = await sosuService.GetTasksForAsync(date, employee);
+            var tasks = await sosuService.GetTasksForAsync(date.Date, employee);
 
             if (TodaysTasks.Count != 0)
             {
