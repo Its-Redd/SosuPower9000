@@ -1,9 +1,31 @@
-# System Description
+# Sosu Centre SYSTEMBESKRIVELSE
+Et antal ældreplejecentre har indgået et samarbejde, med henblik på at udvikle et system til den daglige drift.
 
-Et antal Ã¦ldreplejecentre har indgÃ¥et et samarbejde, med henblik pÃ¥ at udvikle et system til den daglige drift. 
-Der skal udvikles en prototype, der har til hensigt at demonstrere at digital teknologi kan indgÃ¥ i plejecentrenes medarbejderes dagligdag.
-En SOSU medarbejders primÃ¦re opgave er at hjÃ¦lpe de Ã¦ldre pÃ¥ plejecenteret med en rÃ¦kke forskellige ting, dette kaldes opgaver. Typisk er disse opgaver planlagt til at blive lÃ¸st i et bestemt tidsinterval. 
-Der er Ã©n type bruger i denne prototype, SOSU medarbejderen. Det typiske workflow kan beskrives sÃ¥ledes:
-NÃ¥r appen Ã¥bner fÃ¥r medarbejderen vist en liste over alle beboere pÃ¥ plejecenteret. Ved tap pÃ¥ en beboer i appen, vises en liste af de opgaver der skal lÃ¸ses i lÃ¸bet af dagen for denne beboer, samt hvornÃ¥r de er planlagt til. Her vises der samtidig om opgaven allerede er lÃ¸st af en anden medarbejder, og hvem der har lÃ¸st den med medarbejderens initialer. Ved tap pÃ¥ en opgave der endnu ikke er lÃ¸st, vises detaljer om opgaven: start- og sluttidspunkt som i fÃ¸rnÃ¦vnte visning, samt et felt til at indskrive notater om opgavelÃ¸sningen. NÃ¥r medarbejderen har udfÃ¸rt opgaven markeres dette i appen. Eventuelt administreret medicin, noteres ligeledes af SOSU medarbejderen i Appen. Det er planlÃ¦ggeren der skriver ind, hvilke medikamenter der skal gives til den Ã¦ldre.
+## Formål
+En SOSU medarbejders primære opgave er at hjælpe de ældre på plejecenteret med en række forskellige ting, dette kaldes opgaver.
+Typisk er disse opgaver planlagt til at blive løst i et bestemt tidsinterval. 
 
-Hvert plejecenter har sine egne medarbejdere og de lÃ¸ser kun opgaver for deres eget plejecenter.
+
+Foreningen vil gerne have et system der understøtter følgende:
+1. Se alle beboere på plejecenteret.
+2. Se alle opgaver for en beboer med tidspunkt og om den er gjørt.
+3. Se Detjailer for en opgave som ikke er gjørt.	
+4. Tilføje en ny beboer til plejecentret.
+5. Tilføje en ny opgave til en beboer.
+ 
+
+
+## 1. Se alle beboere.
+Denne del af system skal understøtte at når appen åbner får medarbejderen vist en liste over alle beboere på plejecenteret
+
+## 2. Se alle opgaver for en beboer.
+Denne del af system skal understøtte at ved tap på en beboer i appen, vises en liste af de opgaver der skal løses i løbet af dagen for denne beboer, samt hvornår de er planlagt til. Her vises der samtidig om opgaven allerede er løst af en anden medarbejder, og hvem der har løst den med medarbejderens initialer.
+
+## 3. Opgaveløsing
+Denne del af system skal understøtte at ved tap på en opgave der endnu ikke er løst, vises detaljer om opgaven: start- og sluttidspunkt som i førnævnte visning, samt et felt til at indskrive notater om opgaveløsningen. Når medarbejderen har udført opgaven markeres dette i appen.
+
+## 4. Tilføjelse af beboer
+Denne del af system skal understøtte at en administrator kan tilføje en ny beboer til plejecentret. Her skal administrator kunne indtaste navn, adresse, telefonnummer, evt medicin og evt diagnose på beboeren.
+
+## 5. Tilføjelse af opgave
+Denne del af system skal understøtte at en administrator kan tilføje en ny opgave til en beboer. Her skal administrator kunne indtaste en beskrivelse af opgaven, samt start- og sluttidspunkt for opgaven.
