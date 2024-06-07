@@ -22,7 +22,6 @@ public partial class MainPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task UpdateTasksAsync()
     {
-        IsBusy = false;
         if (IsBusy) return;
 
         try
