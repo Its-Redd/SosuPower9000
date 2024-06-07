@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace SosuPower.Maui.viewmodels
 {
@@ -23,6 +24,15 @@ namespace SosuPower.Maui.viewmodels
 
         #endregion
 
+        #region Commands
+
+        [RelayCommand]
+        private void NotImplementedError()
+        {
+            Shell.Current.DisplayAlert("Not Implemented", "This feature is not implemented yet.", "OK");
+        }
+
+        #endregion
 
         #region Properties
 

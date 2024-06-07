@@ -56,7 +56,7 @@ namespace SosuPower.Services
                 date = new DateTime(2022, 1, 1);
                 // Remember to out comment the hardcoded date
 
-                var response = await GetHttpAsync($"Task/GetAssignmentsForEmployeeByDate?employeeId={employee.EmployeeId}&date={date}");
+                var response = await GetHttpAsync($"Task/GetAssignmentsForEmployeeByDate?employeeId={employee.EmployeeId}&date={date.ToString("yyyy-MM-dd")}");
                 var result = response.Content.ReadFromJsonAsAsyncEnumerable<Task>();
                 tasks = await result.ToListAsync();
             }

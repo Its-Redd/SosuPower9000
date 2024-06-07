@@ -29,8 +29,10 @@ public partial class MainPageViewModel : BaseViewModel
         {
             IsBusy = true;
             DateTime date = DateTime.Now;
-            Employee employee = new() { EmployeeId = 2 };
-            var tasks = await sosuService.GetTasksForAsync(date.Date, employee);
+
+
+            Employee employee = new() { EmployeeId = 2 }; // Hardcoded data, pls removals
+            var tasks = await sosuService.GetTasksForAsync(date, employee);
 
             if (TodaysTasks.Count != 0)
             {

@@ -12,7 +12,10 @@ namespace SosuPower.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<SubTask>()
+                .HasDiscriminator<string>("TaskType")
+                .HasValue<SubTask>("SubTask")
+                .HasValue<MedicineTask>("MedicineTask");
         }
 
         public DbSet<CareCenter> CareCenters { get; set; }
@@ -24,6 +27,7 @@ namespace SosuPower.DataAccess
         public DbSet<Entities.Task> Tasks { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<SubTask> SubTasks { get; set; }
+        public DbSet<MedicineTask> MedicineTasks { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
 
