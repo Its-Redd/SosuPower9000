@@ -69,4 +69,10 @@
 	  <ProjectReference Include="..\SosuPower.Services\SosuPower.Services.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="views\TaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

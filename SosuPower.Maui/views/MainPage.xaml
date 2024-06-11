@@ -22,7 +22,6 @@
         <Grid ColumnDefinitions="*,*" 
               RowDefinitions="*,*">
 
-            <!-- Make this correct some time... -->
             <Button Text="Recepter" 
                     Grid.Column="0" 
                     Grid.Row="0"
