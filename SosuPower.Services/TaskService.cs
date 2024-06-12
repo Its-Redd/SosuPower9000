@@ -5,13 +5,13 @@ using Task = SosuPower.Entities.Task;
 
 namespace SosuPower.Services;
 
-public class SosuService : ApiBase, ISosuService
+public class TaskService : ApiBase, ISosuService
 {
-    public SosuService(Uri baseUri) : base(baseUri)
+    public TaskService(Uri baseUri) : base(baseUri)
     {
         // Initialize the service
     }
-    public SosuService(string baseUri) : base(baseUri)
+    public TaskService(string baseUri) : base(baseUri)
     {
         // Initialize the service
     }
