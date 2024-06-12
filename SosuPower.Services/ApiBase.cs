@@ -37,4 +37,6 @@ namespace SosuPower.Services
     {
         Task<List<Entities.Task>> GetTasksForAsync(DateTime date, Employee employee);
     }
+
+
 }

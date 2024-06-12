@@ -21,10 +21,7 @@ public class SosuService : ApiBase, ISosuService
         List<Task> tasks;
         try
         {
-            // Hardcoded date for testing purposes
-            date = new DateTime(2022, 1, 1);
-            // Remember to out comment the hardcoded date
-
+            date = new DateTime(2024, 6, 19);
             var response = await GetHttpAsync($"Task/GetAssignmentsForEmployeeByDate?employeeId={employee.EmployeeId}&date={date.ToString("yyyy-MM-dd")}");
             var result = response.Content.ReadFromJsonAsAsyncEnumerable<Task>();
             tasks = await result.ToListAsync();
@@ -35,7 +32,6 @@ public class SosuService : ApiBase, ISosuService
             Debug.WriteLine(e.InnerException);
             throw;
         }
-
         return tasks;
     }
 }

@@ -6,6 +6,7 @@
              x:DataType="viewModel:TaskPageViewModel"
              x:Class="SosuPower.Maui.views.TaskPage">
     <VerticalStackLayout>
+        <!-- DNF - Did Not Finish -->
         <Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 

@@ -30,7 +30,7 @@ public partial class MainPageViewModel : BaseViewModel
             DateTime date = DateTime.Now;
 
 
-            Employee employee = new() { EmployeeId = 2 }; // Hardcoded data, pls removals
+            Employee employee = new() { EmployeeId = 2 }; // Hardcoded data since i wasnt able to finish the login page
             var tasks = await sosuService.GetTasksForAsync(date, employee);
 
             if (TodaysTasks.Count != 0)
