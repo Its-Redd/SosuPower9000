@@ -3,8 +3,13 @@ namespace SosuPower.Tests
     public class TaskRepositoryTest
     {
         [Fact]
-        public void Test1()
+        public void IsEmployeeIdCorrect()
         {
+            // Arrange
+
+            // Act
+
+            // Assert
 
         }
     }

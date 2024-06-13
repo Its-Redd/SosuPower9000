@@ -5,11 +5,19 @@ namespace SosuPower.DataAccess
 {
     public class DataContext : DbContext
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataContext"/> class.
+        /// </summary>
+        /// <param name="options">The options for configuring the data context.</param>
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
 
+        /// <summary>
+        /// Configures the model for the data context.
+        /// </summary>
+        /// <param name="modelBuilder">The model builder.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SubTask>()
@@ -29,7 +37,5 @@ namespace SosuPower.DataAccess
         public DbSet<SubTask> SubTasks { get; set; }
         public DbSet<MedicineTask> MedicineTasks { get; set; }
         public DbSet<Employee> Employees { get; set; }
-
-
     }
 }

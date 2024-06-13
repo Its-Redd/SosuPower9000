@@ -4,6 +4,14 @@ namespace SosuPower.Maui.Converters
 {
     public class TimeRangeConverter : IMultiValueConverter
     {
+        /// <summary>
+        /// Converts an array of DateTime values into a formatted string representing the time range.
+        /// </summary>
+        /// <param name="values">The array of DateTime values representing the start and end time.</param>
+        /// <param name="targetType">The type of the binding target property.</param>
+        /// <param name="parameter">The converter parameter to use.</param>
+        /// <param name="culture">The culture to use in the converter.</param>
+        /// <returns>A formatted string representing the time range.</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length != 2)
@@ -22,6 +30,9 @@ namespace SosuPower.Maui.Converters
             return null;
         }
 
+        /// <summary>
+        /// Not implemented
+        /// </summary>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

@@ -7,6 +7,7 @@ namespace SosuPower.Maui
 {
     public static class MauiProgram
     {
+        // The URL of the API. This is the IP address of the host machine running the API.
         private const string Url = "https://10.0.2.2:7238/api/";
         public static MauiApp CreateMauiApp()
         {

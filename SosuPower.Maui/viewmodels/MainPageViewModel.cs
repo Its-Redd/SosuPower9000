@@ -6,11 +6,11 @@ using System.Diagnostics;
 using Task = System.Threading.Tasks.Task;
 
 namespace SosuPower.Maui.viewmodels;
-
 public partial class MainPageViewModel : BaseViewModel
 {
     private readonly ISosuService sosuService;
     public ObservableCollection<Entities.Task> TodaysTasks { get; } = new();
+
 
     public MainPageViewModel(ISosuService sosuService)
     {
@@ -19,6 +19,9 @@ public partial class MainPageViewModel : BaseViewModel
         UpdateTasksAsync();
     }
 
+    /// <summary>
+    /// Updates the tasks asynchronously.
+    /// </summary>
     [RelayCommand]
     private async Task UpdateTasksAsync()
     {
@@ -29,8 +32,7 @@ public partial class MainPageViewModel : BaseViewModel
             IsBusy = true;
             DateTime date = DateTime.Now;
 
-
-            Employee employee = new() { EmployeeId = 2 }; // Hardcoded data since i wasnt able to finish the login page
+            Employee employee = new() { EmployeeId = 2 }; // Hardcoded data since I wasn't able to finish the login page
             var tasks = await sosuService.GetTasksForAsync(date, employee);
 
             if (TodaysTasks.Count != 0)
@@ -42,7 +44,6 @@ public partial class MainPageViewModel : BaseViewModel
             {
                 TodaysTasks.Add(task);
             }
-
         }
         catch (Exception ex)
         {

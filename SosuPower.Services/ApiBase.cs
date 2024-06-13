@@ -2,12 +2,10 @@
 
 namespace SosuPower.Services
 {
-    // Probably my favorite class in the project cause its so cool
     public abstract class ApiBase
     {
         protected Uri baseUri;
         protected HttpClient client;
-
 
         protected ApiBase(Uri baseUri)
         {
@@ -15,7 +13,7 @@ namespace SosuPower.Services
 
             HttpClientHandler handler = new HttpClientHandler();
             {
-                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true; // Ignore SSL certificate errors 
             }
 
             client = new HttpClient(handler);
@@ -26,6 +24,11 @@ namespace SosuPower.Services
 
         }
 
+        /// <summary>
+        /// Sends an HTTP GET request to the specified URI.
+        /// </summary>
+        /// <param name="uri">The URI to send the request to.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains the HTTP response message.</returns>
         protected virtual async Task<HttpResponseMessage> GetHttpAsync(string uri)
         {
             string url = $"{baseUri}{uri}";
@@ -33,8 +36,17 @@ namespace SosuPower.Services
         }
     }
 
+    /// <summary>
+    /// Interface for the SOSU service.
+    /// </summary>
     public interface ISosuService
     {
+        /// <summary>
+        /// Gets the tasks for the specified date and employee asynchronously.
+        /// </summary>
+        /// <param name="date">The date to get the tasks for.</param>
+        /// <param name="employee">The employee to get the tasks for.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains the list of tasks.</returns>
         Task<List<Entities.Task>> GetTasksForAsync(DateTime date, Employee employee);
     }
 
