@@ -5,33 +5,38 @@ using Task = System.Threading.Tasks.Task;
 
 namespace SosuPower.Maui.viewmodels
 {
-    public partial class LoginPageViewModel : BaseViewModel
+    public partial class LoginPageViewModel(IUserService userService) : BaseViewModel
     {
-        private IUserService userService;
-        //dependency injection of IUserService to set the userId
-        public LoginPageViewModel(IUserService userService)
-        {
-            this.userService = userService;
-        }
-
-
         [RelayCommand]
-        async Task GoToMainAsync(string UserInput)
+        protected async Task GoToMainAsync(string UserInput)
         {
-
-            if (int.TryParse(UserInput, out int id))
-            {
-                if (id > 0)
+            try { 
+                if (LoginPageViewModel.CheckUserInput(UserInput))
                 {
-                    userService.GetUserAsync(id);
-                    await Shell.Current.GoToAsync($"{nameof(MainPage)}");
+                    var e = await userService.GetUserAsync(Convert.ToInt32(UserInput));
+                    userService.Employee = e; // det her er IKKE best practice. Find en bedre måde.
 
+                    await Shell.Current.GoToAsync(nameof(MainPage));
                 }
 
+                throw new Exception("Indtast venligst et tal.");
+            } catch(Exception e)
+            {
+                await Alert(e.Message);
+                return;
             }
-            return;
         }
 
+        private static bool CheckUserInput(string UserInput)
+        {
+            // Hvis UserInput kan parses til en int, returner true
+            if (int.TryParse(UserInput, out _))
+            {
+                return true;
+            }
 
+            // Ellers, returner false
+            return false;
+        }
     }
 }

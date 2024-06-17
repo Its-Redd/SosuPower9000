@@ -32,6 +32,13 @@ namespace SosuPower.Maui.viewmodels
             Shell.Current.DisplayAlert("Not Implemented", "This feature is not implemented yet.", "OK");
         }
 
+        // Så vi kan give brugeren feedback.
+        [RelayCommand]
+        protected async Task Alert(string message)
+        {
+            await Shell.Current.DisplayAlert(Title, message, "OK");
+        }
+
         #endregion
 
         #region Properties

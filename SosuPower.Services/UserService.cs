@@ -2,6 +2,7 @@
 using System.Data;
 using System.Diagnostics;
 using System.Net.Http.Json;
+using System.Resources;
 
 namespace SosuPower.Services
 {
@@ -10,12 +11,12 @@ namespace SosuPower.Services
 
         public UserService(Uri baseUri) : base(baseUri)
         {
-            // Initialize the service
+            Employee = new Employee();
         }
 
         public UserService(string baseUri) : base(baseUri)
         {
-            // Initialize the service
+            Employee = new Employee();
         }
         public Employee Employee { get; set; }
 
@@ -30,7 +31,8 @@ namespace SosuPower.Services
                     throw new DataException("Brugeren kunne ikke hentes.");
                 }
 
-                var res = await response.Content.ReadFromJsonAsync<Employee>();
+                
+                var res = await response.Content.ReadFromJsonAsync<Employee>() ?? throw new DataException("Brugeren kunne ikke hentes."); // Læs content. Hvis det er null, så kast en data exception.
                 Employee = res;
                 return res;
             }

@@ -16,6 +16,9 @@ namespace SosuPower.Services
                 handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true; // Ignore SSL certificate errors 
             }
 
+            // Overvej at sætte en max limit på vente tid ifh.t. til at hente data fra API'en.
+            // Hvis den er off, kan du satme vente længe.
+
             client = new HttpClient(handler);
         }
 
