@@ -31,8 +31,16 @@ namespace SosuPower.Services
         /// <returns>A task representing the asynchronous operation. The task result contains the HTTP response message.</returns>
         protected virtual async Task<HttpResponseMessage> GetHttpAsync(string uri)
         {
-            string url = $"{baseUri}{uri}";
-            return await client.GetAsync(url);
+            try
+            {
+                string url = $"{baseUri}{uri}";
+                var res = await client.GetAsync(url);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 

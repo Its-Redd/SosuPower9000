@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using SosuPower.Entities;
 using SosuPower.Services;
 using System.Collections.ObjectModel;
@@ -9,13 +10,19 @@ namespace SosuPower.Maui.viewmodels;
 public partial class MainPageViewModel : BaseViewModel
 {
     private readonly ISosuService sosuService;
+    private IUserService userService;
     public ObservableCollection<Entities.Task> TodaysTasks { get; } = new();
 
+    [ObservableProperty]
+    private Employee user;
 
-    public MainPageViewModel(ISosuService sosuService)
+
+    public MainPageViewModel(ISosuService sosuService, IUserService userService)
     {
         Title = "DAGENS OPGAVER";
         this.sosuService = sosuService;
+        this.userService = userService;
+        User = userService.Employee;
         UpdateTasksAsync();
     }
 
@@ -32,8 +39,7 @@ public partial class MainPageViewModel : BaseViewModel
             IsBusy = true;
             DateTime date = DateTime.Now;
 
-            Employee employee = new() { EmployeeId = 2 }; // Hardcoded data since I wasn't able to finish the login page
-            var tasks = await sosuService.GetTasksForAsync(date, employee);
+            var tasks = await sosuService.GetTasksForAsync(date, userService.Employee);
 
             if (TodaysTasks.Count != 0)
             {

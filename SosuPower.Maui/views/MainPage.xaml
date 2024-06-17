@@ -31,7 +31,7 @@
                     Style="{StaticResource Pill}"/>
 
             <!-- Fix name to be correct to the logged in user (log in not existing yet...)-->
-            <Label Text="Simon P. Rasmussen" 
+            <Label Text="{Binding User.Name}" 
                    Grid.Column="1" 
                    Grid.Row="0" 
                    VerticalTextAlignment="Start" 

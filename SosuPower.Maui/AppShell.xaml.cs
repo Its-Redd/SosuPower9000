@@ -1,4 +1,5 @@
 ﻿using SosuPower.Maui.views;
+using SosuPower.Maui.Views;
 
 namespace SosuPower.Maui
 {
@@ -9,6 +10,7 @@ namespace SosuPower.Maui
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         }
     }
 }

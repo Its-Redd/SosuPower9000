@@ -23,12 +23,11 @@ namespace SosuPower.Maui
 
             Uri baseUri = new Uri(Url);
             builder.Services.AddScoped<ISosuService>(x => new TaskService(baseUri));
-            builder.Services.AddScoped<IUserService>(x => new UserService());
-            builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddSingleton<IUserService, UserService>();
+            builder.Services.AddTransient<MainPageViewModel>();
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddTransient<LoginPageViewModel>();
             builder.Services.AddSingleton<LoginPage>();
-
 
 #if DEBUG
             builder.Logging.AddDebug();
