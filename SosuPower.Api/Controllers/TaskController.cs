@@ -7,8 +7,6 @@ namespace SosuPower.Api.Controllers
     [Route("api/[controller]")]
     public class TaskController(ITaskRepository repository) : Controller
     {
-        private readonly ITaskRepository repository = repository;
-
         /// <summary>
         /// Retrieves the assignments for an employee on a specific date.
         /// </summary>

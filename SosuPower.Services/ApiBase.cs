@@ -53,8 +53,8 @@ namespace SosuPower.Services
 
     public interface IUserService
     {
-        void SetUserId(int value);
-        int GetUserId();
+        Employee Employee { get; set; }
+        Task<Employee> GetUserAsync(int userId);
     }
 
 

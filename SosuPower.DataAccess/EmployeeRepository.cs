@@ -9,6 +9,7 @@ namespace SosuPower.DataAccess
         {
         }
 
+
         public IEnumerable<Task> GetEmployeesAt(CareCenter careCenter)
         {
             throw new NotImplementedException();
@@ -18,5 +19,7 @@ namespace SosuPower.DataAccess
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

@@ -23,7 +23,7 @@ namespace SosuPower.Maui.viewmodels
             {
                 if (id > 0)
                 {
-                    userService.SetUserId(id);
+                    userService.GetUserAsync(id);
                     await Shell.Current.GoToAsync($"{nameof(MainPage)}");
 
                 }

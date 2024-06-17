@@ -8,9 +8,6 @@ namespace SosuPower.Api.Controllers
     [ApiController]
     public class EmployeeController(IEmployeeRepository repository) : ControllerBase
     {
-
-        private readonly IEmployeeRepository repository;
-
         /// <summary>
         /// Retrieves all employees.
         /// </summary>
