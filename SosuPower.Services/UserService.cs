@@ -22,8 +22,7 @@ namespace SosuPower.Services
 
         public async Task<Employee> GetUserAsync(int userId)
         {
-            try
-            {
+            // Fjernet try, catch så vi griber den højere i systemet. 
                 var response = await GetHttpAsync($"Employee/{userId}");
 
                 if (!response.IsSuccessStatusCode)
@@ -35,13 +34,6 @@ namespace SosuPower.Services
                 var res = await response.Content.ReadFromJsonAsync<Employee>() ?? throw new DataException("Brugeren kunne ikke hentes."); // Læs content. Hvis det er null, så kast en data exception.
                 Employee = res;
                 return res;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Debug.WriteLine(e.InnerException);
-                throw;
-            }
         }
 
 

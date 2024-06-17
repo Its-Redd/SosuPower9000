@@ -18,13 +18,14 @@ public class TaskService : ApiBase, ISosuService
 
     public async Task<List<Entities.Task>> GetTasksForAsync(DateTime date, Employee employee)
     {
-        List<Task> tasks;
         try
         {
-            date = new DateTime(2024, 6, 19);
+            date = new DateTime(2024, 6, 4); // Er det bevidst du ikke har en kommentar om at slette den her???
+
             var response = await GetHttpAsync($"Task/GetAssignmentsForEmployeeByDate?employeeId={employee.EmployeeId}&date={date.ToString("yyyy-MM-dd")}");
             var result = response.Content.ReadFromJsonAsAsyncEnumerable<Task>();
-            tasks = await result.ToListAsync();
+            List<Task> tasks = await result.ToListAsync();
+            return tasks;
         }
         catch (Exception e)
         {
@@ -32,7 +33,8 @@ public class TaskService : ApiBase, ISosuService
             Debug.WriteLine(e.InnerException);
             throw;
         }
-        return tasks;
+
+        // Hvorfor returnerer du en liste af tasks hernede, i stedet for i din try? 
     }
 
 }

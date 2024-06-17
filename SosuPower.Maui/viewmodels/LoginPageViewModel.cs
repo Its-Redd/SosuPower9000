@@ -11,12 +11,12 @@ namespace SosuPower.Maui.viewmodels
         protected async Task GoToMainAsync(string UserInput)
         {
             try { 
-                if (LoginPageViewModel.CheckUserInput(UserInput))
+                if (CheckUserInput(UserInput))
                 {
                     var e = await userService.GetUserAsync(Convert.ToInt32(UserInput));
-                    userService.Employee = e; // det her er IKKE best practice. Find en bedre måde.
 
                     await Shell.Current.GoToAsync(nameof(MainPage));
+                    return;
                 }
 
                 throw new Exception("Indtast venligst et tal.");
