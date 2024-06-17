@@ -51,4 +51,22 @@ namespace SosuPower.Services
     }
 
 
+    public interface IUserService
+    {
+        void SetUserId(int value);
+        int GetUserId();
+    }
+
+
+    public interface ISubTaskService
+    {
+        /// <summary>
+        /// Gets the subtasks for the specified task asynchronously.
+        /// </summary>
+        /// <param name="taskId">The ID of the task to get the subtasks for.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains the list of subtasks.</returns>
+        Task<List<SubTask>> GetSubTasksForTaskAsync(int taskId);
+    }
+
+
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using SosuPower.Maui.viewmodels;
+using SosuPower.Maui.views;
 using SosuPower.Maui.Views;
 using SosuPower.Services;
 
@@ -22,8 +23,11 @@ namespace SosuPower.Maui
 
             Uri baseUri = new Uri(Url);
             builder.Services.AddScoped<ISosuService>(x => new TaskService(baseUri));
+            builder.Services.AddScoped<IUserService>(x => new UserService());
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddSingleton<LoginPage>();
 
 
 #if DEBUG
