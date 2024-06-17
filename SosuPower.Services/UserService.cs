@@ -2,14 +2,16 @@
 {
     public class UserService : IUserService
     {
+        private int userId;
+
         public void SetUserId(int value)
         {
-            throw new NotImplementedException();
+            userId = value;
         }
 
         public int GetUserId()
         {
-            throw new NotImplementedException();
+            return userId;
         }
     }
 }
