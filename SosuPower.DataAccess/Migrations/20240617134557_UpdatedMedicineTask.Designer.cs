@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SosuPower.DataAccess;
 
@@ -11,9 +12,11 @@ using SosuPower.DataAccess;
 namespace SosuPower.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240617134557_UpdatedMedicineTask")]
+    partial class UpdatedMedicineTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace SosuPower.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("EmployeeRole", b =>
-                {
-                    b.Property<int>("EmployeesEmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RolesRoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeesEmployeeId", "RolesRoleId");
-
-                    b.HasIndex("RolesRoleId");
-
-                    b.ToTable("EmployeeRole");
-                });
 
             modelBuilder.Entity("EmployeeTask", b =>
                 {
@@ -163,10 +151,15 @@ namespace SosuPower.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicineId"));
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TaskId")
+                        .HasColumnType("int");
 
                     b.HasKey("MedicineId");
+
+                    b.HasIndex("TaskId");
 
                     b.ToTable("Medicines");
                 });
@@ -182,7 +175,7 @@ namespace SosuPower.DataAccess.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Completed")
+                    b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
 
                     b.Property<int?>("MedicineId")
@@ -191,17 +184,12 @@ namespace SosuPower.DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TaskId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MedicineTaskId");
 
                     b.HasIndex("MedicineId");
-
-                    b.HasIndex("TaskId");
 
                     b.ToTable("MedicineTasks");
                 });
@@ -217,8 +205,8 @@ namespace SosuPower.DataAccess.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ResidentId")
                         .HasColumnType("int");
@@ -273,10 +261,15 @@ namespace SosuPower.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RoleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Roles");
                 });
@@ -295,12 +288,7 @@ namespace SosuPower.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TaskId")
-                        .HasColumnType("int");
-
                     b.HasKey("SubTaskId");
-
-                    b.HasIndex("TaskId");
 
                     b.ToTable("SubTasks");
                 });
@@ -330,21 +318,6 @@ namespace SosuPower.DataAccess.Migrations
                     b.HasIndex("ResidentId");
 
                     b.ToTable("Tasks");
-                });
-
-            modelBuilder.Entity("EmployeeRole", b =>
-                {
-                    b.HasOne("SosuPower.Entities.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("EmployeesEmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SosuPower.Entities.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RolesRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("EmployeeTask", b =>
@@ -391,15 +364,18 @@ namespace SosuPower.DataAccess.Migrations
                     b.Navigation("CareCenter");
                 });
 
+            modelBuilder.Entity("SosuPower.Entities.Medicine", b =>
+                {
+                    b.HasOne("SosuPower.Entities.Task", null)
+                        .WithMany("Medicines")
+                        .HasForeignKey("TaskId");
+                });
+
             modelBuilder.Entity("SosuPower.Entities.MedicineTask", b =>
                 {
                     b.HasOne("SosuPower.Entities.Medicine", "Medicine")
                         .WithMany()
                         .HasForeignKey("MedicineId");
-
-                    b.HasOne("SosuPower.Entities.Task", null)
-                        .WithMany("MedicineTasks")
-                        .HasForeignKey("TaskId");
 
                     b.Navigation("Medicine");
                 });
@@ -418,11 +394,11 @@ namespace SosuPower.DataAccess.Migrations
                         .HasForeignKey("CareCenterId");
                 });
 
-            modelBuilder.Entity("SosuPower.Entities.SubTask", b =>
+            modelBuilder.Entity("SosuPower.Entities.Role", b =>
                 {
-                    b.HasOne("SosuPower.Entities.Task", null)
-                        .WithMany("SubTasks")
-                        .HasForeignKey("TaskId");
+                    b.HasOne("SosuPower.Entities.Employee", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("EmployeeId");
                 });
 
             modelBuilder.Entity("SosuPower.Entities.Task", b =>
@@ -441,6 +417,11 @@ namespace SosuPower.DataAccess.Migrations
                     b.Navigation("Residents");
                 });
 
+            modelBuilder.Entity("SosuPower.Entities.Employee", b =>
+                {
+                    b.Navigation("Roles");
+                });
+
             modelBuilder.Entity("SosuPower.Entities.Resident", b =>
                 {
                     b.Navigation("Diagnoses");
@@ -450,9 +431,7 @@ namespace SosuPower.DataAccess.Migrations
 
             modelBuilder.Entity("SosuPower.Entities.Task", b =>
                 {
-                    b.Navigation("MedicineTasks");
-
-                    b.Navigation("SubTasks");
+                    b.Navigation("Medicines");
                 });
 #pragma warning restore 612, 618
         }

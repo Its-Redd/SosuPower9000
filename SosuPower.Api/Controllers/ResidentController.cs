@@ -8,7 +8,7 @@ namespace SosuPower.Api.Controllers
     [ApiController]
     public class ResidentController(IRepository<Resident> repository) : ControllerBase
     {
-        private readonly IRepository<Resident> repository;
+        // Primary constructors, 3.
 
         /// <summary>
         /// Retrieves all residents.

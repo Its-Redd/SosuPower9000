@@ -20,10 +20,6 @@ namespace SosuPower.DataAccess
         /// <param name="modelBuilder">The model builder.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SubTask>()
-                .HasDiscriminator<string>("TaskType")
-                .HasValue<SubTask>("SubTask")
-                .HasValue<MedicineTask>("MedicineTask");
         }
 
         public DbSet<CareCenter> CareCenters { get; set; }

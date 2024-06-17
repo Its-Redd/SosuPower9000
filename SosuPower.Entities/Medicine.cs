@@ -4,12 +4,12 @@
     {
         #region Fields
         private int medicineId;
-        private int name;
+        private string name;
         #endregion
 
         #region Constructors
 
-        public Medicine(int medicineId, int name)
+        public Medicine(int medicineId, string name)
         {
             MedicineId = medicineId;
             Name = name;
@@ -24,7 +24,7 @@
             set { medicineId = value; }
         }
 
-        public int Name
+        public string Name
         {
             get { return name; }
             set { name = value; }

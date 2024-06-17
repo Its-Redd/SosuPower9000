@@ -5,7 +5,7 @@
         #region Fields
 
         private int prescriptionId;
-        private int name;
+        private string name;
         private int amount;
         private string unit;
 
@@ -13,7 +13,7 @@
 
         #region Constructors
 
-        public Prescription(int prescriptionId, int name, int amount, string unit)
+        public Prescription(int prescriptionId, string name, int amount, string unit)
         {
             PrescriptionId = prescriptionId;
             Name = name;
@@ -31,7 +31,7 @@
             set { prescriptionId = value; }
         }
 
-        public int Name
+        public string Name
         {
             get { return name; }
             set { name = value; }

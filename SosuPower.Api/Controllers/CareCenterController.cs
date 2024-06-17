@@ -8,7 +8,7 @@ namespace SosuPower.Api.Controllers
     [ApiController]
     public class CareCenterController(IRepository<CareCenter> repository) : ControllerBase
     {
-        private readonly IRepository<CareCenter> repository;
+        // Kig ind i primary constructors, igen.
 
         /// <summary>
         /// Get all care centers.

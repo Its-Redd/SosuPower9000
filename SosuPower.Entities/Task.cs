@@ -12,7 +12,8 @@ namespace SosuPower.Entities
         private DateTime timeEnd;
         private Resident resident;
         private List<Employee> employees;
-        private List<Medicine> medicines;
+        private List<MedicineTask> medicineTask;
+        private List<SubTask> subTask;
         private bool completed;
 
         #endregion
@@ -22,18 +23,23 @@ namespace SosuPower.Entities
         public Task()
         {
             this.employees = new List<Employee>(); // Initialize to prevent null reference issues
-            this.medicines = new List<Medicine>(); // Initialize to prevent null reference issues
+
+            // Vi bruger vores property, så vi kan data checke.
+            MedicineTasks = new List<MedicineTask>();
+            SubTasks = new List<SubTask>();
+            
         }
 
         public Task(int taskId, DateTime timeStart, DateTime timeEnd, Resident resident,
-                    List<Employee> employees, List<Medicine> medicines, bool completed)
+                    List<Employee> employees, List<MedicineTask> medicines, List<SubTask> subTasks, bool completed)
         {
             this.taskId = taskId;
             this.timeStart = timeStart;
             this.timeEnd = timeEnd;
             this.resident = resident;
             this.employees = employees ?? new List<Employee>();
-            this.medicines = medicines ?? new List<Medicine>();
+            MedicineTasks = medicines ?? new List<MedicineTask>();
+            SubTasks = subTasks ?? new List<SubTask>();
             this.completed = completed;
         }
 
@@ -41,6 +47,10 @@ namespace SosuPower.Entities
 
         #region Properties
 
+        // Sker automatisk, når vi bruger Entity Framework.
+        // Så længe den hedder "Entitet"Id, så er det en primary key.
+        // Hvis ikke, får du fejl - og skal måske bruge [Key] annotation.
+        // Men det roder din kode... - så bare gør som EF siger.
         [Key]
         public int TaskId
         {
@@ -56,6 +66,7 @@ namespace SosuPower.Entities
             set { timeStart = value; }
         }
 
+        // Ikke nødvendig, propertien er ikke nullable.
         [Required]
         public DateTime TimeEnd
         {
@@ -78,10 +89,16 @@ namespace SosuPower.Entities
             set { employees = value; }
         }
 
-        public virtual List<Medicine> Medicines
+        public virtual List<MedicineTask> MedicineTasks
         {
-            get { return medicines; }
-            set { medicines = value; }
+            get { return medicineTask; }
+            set { medicineTask = value; }
+        }
+
+        public virtual List<SubTask> SubTasks
+        {
+            get { return subTask; }
+            set { subTask = value; }
         }
 
 

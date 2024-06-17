@@ -8,7 +8,7 @@ namespace SosuPower.Api.Controllers
     [ApiController]
     public class AddressController(IRepository<Address> repository) : ControllerBase
     {
-        private readonly IRepository<Address> repository;
+        // Der var en private readonly field med IRepository<Address> her. Kig ind i Primary Constructors. 
 
         /// <summary>
         /// Retrieves all addresses.

@@ -1,46 +1,61 @@
 ﻿namespace SosuPower.Entities
 {
-    public class MedicineTask : SubTask
-
+    public class MedicineTask
     {
-
         #region Fields
 
+        private int medicineTaskId;
+        private string name;
+        private bool completed;
         private Medicine medicine;
-        private int amount;
         private string unit;
+        private int amount;
 
-        #endregion
+        #endregion 
 
         #region Constructors
 
         public MedicineTask()
-        {
+        { }
 
-        }
-
-        public MedicineTask(int subTaskId, string description, bool completed, Medicine medicine, int amount, string unit)
-            : base(subTaskId, description, completed)
+        // Det her er et godt eksempel, på hvordan vi bruger vores properties - så vi kan data checke.
+        // I stedet for at sætte det direkte på vores fields. Hvordan sikre du objektets tilstand på andre måder?
+        public MedicineTask(int medicineTaskId, string name, bool isCompleted, Medicine medicine, string unit, int amount)
         {
-            this.medicine = medicine;
-            this.amount = amount;
-            this.unit = unit;
+            MedicineTaskId = medicineTaskId;
+            Name = name;
+            Completed = isCompleted;
+            Medicine = medicine;
+            Unit = unit;
+            Amount = amount;
         }
 
         #endregion
 
         #region Properties
 
+        public int MedicineTaskId
+        {
+            get { return medicineTaskId; }
+            set { medicineTaskId = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public bool Completed
+        {
+            get { return completed; }
+            set { completed = value; }
+        }
+
         public Medicine Medicine
         {
             get { return medicine; }
             set { medicine = value; }
-        }
-
-        public int Amount
-        {
-            get { return amount; }
-            set { amount = value; }
         }
 
         public string Unit
@@ -49,9 +64,12 @@
             set { unit = value; }
         }
 
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+
         #endregion
-
-
-
     }
 }

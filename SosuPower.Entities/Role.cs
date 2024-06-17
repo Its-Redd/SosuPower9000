@@ -5,13 +5,20 @@
         #region Fields
         private int roleId;
         private string roleName;
+        private List<Employee> employees;
         #endregion
 
         #region Constructors
-        public Role(int roleId, string roleName)
+        public Role()
+        {
+            Employees = new List<Employee>();
+        }
+
+        public Role(int roleId, string roleName, List<Employee> employees)
         {
             RoleId = roleId;
             RoleName = roleName;
+            Employees = employees ?? new List<Employee>();
         }
         #endregion
 
@@ -26,6 +33,12 @@
         {
             get { return roleName; }
             set { roleName = value; }
+        }
+
+        public virtual List<Employee> Employees
+        {
+            get { return employees; }
+            set { employees = value; }
         }
         #endregion
     }
