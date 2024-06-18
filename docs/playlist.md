@@ -15,8 +15,6 @@
    - Byg programmet
 6. Testing
     - Unit Testing
-7. Hvorfor kategorier?
-   - Hvorfor dele det op i kategorier. (Nedbrydning)
 
 ### Kode eksempler
 
@@ -30,7 +28,7 @@
 ### OOP
    - Polymorfi
       - Interfaces
-        - Interfaces definerer en kontrakt, som klasser kan implementere.
+        - Interfaces definerer en kontrakt, som klasser skal implementere.
         - De tillader polymorfi ved at flere klasser kan implementere samme interface og dermed behandles ens.
       - Generics
         - Generics tillader, at klasser og metoder kan operere på objekter af forskellige typer
@@ -47,8 +45,5 @@
    - DataContext
    - Repository klasse
      - Hvorfor bruger nogle controllers standard repository, og andre ikke?
-     - Vigtigheden af interfaces.
    - Entity Framework
-     - Hvorfor?
-     - Code first tilgang
-       - Hvorfor?
+     - Code first tilgang (Start med at lave dine entititer)
