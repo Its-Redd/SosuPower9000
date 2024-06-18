@@ -43,6 +43,7 @@
    - Controllers
      - Seperation of concerns
    - Dependency Injection (Program.cs)
+    - Provide dependencies externally
 #####  Repository lag
    - DataContext
    - Repository klasse
