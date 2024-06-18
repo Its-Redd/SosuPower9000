@@ -23,11 +23,11 @@ namespace SosuPower.Maui.viewmodels
             {
                 if (id > 0)
                 {
-                    userService.GetUserAsync(id);
+                    var e = userService.GetUserAsync(id);
+                    userService.Employee = await e;
                     await Shell.Current.GoToAsync($"{nameof(MainPage)}");
 
                 }
-
             }
             return;
         }

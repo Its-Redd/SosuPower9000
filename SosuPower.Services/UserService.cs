@@ -10,12 +10,12 @@ namespace SosuPower.Services
 
         public UserService(Uri baseUri) : base(baseUri)
         {
-            // Initialize the service
+            Employee = new Employee();
         }
 
         public UserService(string baseUri) : base(baseUri)
         {
-            // Initialize the service
+            Employee = new Employee();
         }
         public Employee Employee { get; set; }
 

@@ -23,14 +23,14 @@ public partial class MainPageViewModel : BaseViewModel
         this.sosuService = sosuService;
         this.userService = userService;
         User = userService.Employee;
-        UpdateTasksAsync();
+        UpdateTasksAsync(User);
     }
 
     /// <summary>
     /// Updates the tasks asynchronously.
     /// </summary>
     [RelayCommand]
-    private async Task UpdateTasksAsync()
+    private async Task UpdateTasksAsync(Employee user)
     {
         if (IsBusy) return;
 
@@ -39,7 +39,7 @@ public partial class MainPageViewModel : BaseViewModel
             IsBusy = true;
             DateTime date = DateTime.Now;
 
-            var tasks = await sosuService.GetTasksForAsync(date, userService.Employee);
+            var tasks = await sosuService.GetTasksForAsync(date, user);
 
             if (TodaysTasks.Count != 0)
             {
