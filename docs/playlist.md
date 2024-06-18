@@ -44,7 +44,7 @@
 #####  Repository lag
    - DataContext
    - Repository klasse
-     - Hvorfor bruger nogle controllers standard repository, og andre ikke?
+     - Hvorfor bruger nogle controllers standard repository, og andre ikke? (specialiserede repositories)
    - Entity Framework
      - Code first tilgang (Start med at lave dine entititer)
 ##### Service lag
