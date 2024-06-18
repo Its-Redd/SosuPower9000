@@ -1,6 +1,8 @@
 # Playlist til S3 eksamen (19/06/2024)
 
 1. Hej
+- presenter casen (SOSUPOWER - Opgave fordelings system til SOSU-medarbejdere)
+
 
 2. GitHub Projects
    - Issues
