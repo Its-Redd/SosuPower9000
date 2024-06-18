@@ -15,5 +15,16 @@ namespace SosuPower.Tests
             // Assert
 
         }
+
+        [Fact]
+        public void IsDateCorrect()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+
+        }
     }
 }
