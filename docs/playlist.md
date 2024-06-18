@@ -37,13 +37,16 @@
       - Constructor Chaining
       - Method overriding
 
-9. API lag
+##### API lag
    - Controllers
      - Seperation of concerns
    - Dependency Injection (Program.cs)
-10. Repository lag
+#####  Repository lag
    - DataContext
    - Repository klasse
      - Hvorfor bruger nogle controllers standard repository, og andre ikke?
    - Entity Framework
      - Code first tilgang (Start med at lave dine entititer)
+##### Service lag
+- ApiBase til at kommunikere med API
+- Specialiserede services
